@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.0.5'
 	id 'io.spring.dependency-management' version '1.1.0'
+
 }
 
 group = 'com.cinema'
@@ -13,12 +14,17 @@ repositories {
 }
 
 dependencies {
+	compileOnly 'net.jcip:jcip-annotations:1.0'
+	implementation 'org.liquibase:liquibase-maven-plugin:4.20.0'
+	implementation 'org.apache.commons:commons-dbcp2:2.9.0'
+	implementation 'org.sql2o:sql2o:1.6.0'
+	implementation 'org.postgresql:postgresql:42.6.0'
+	implementation 'org.liquibase:liquibase-core:4.20.0'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation "com.puppycrawl.tools:checkstyle:10.3.3"
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
+	testImplementation 'com.h2database:h2:2.1.214'
+	testImplementation "org.mockito:mockito-core:3.5.13"
 }
