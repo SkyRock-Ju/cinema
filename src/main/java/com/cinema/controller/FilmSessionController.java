@@ -1,11 +1,16 @@
 package com.cinema.controller;
 
+import com.cinema.model.FileDto;
+import com.cinema.model.Film;
+import com.cinema.model.FilmSession;
+import com.cinema.service.FilmService;
 import com.cinema.service.FilmSessionService;
+import com.cinema.service.HallService;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.stream.Collectors;
 
@@ -15,9 +20,14 @@ import java.util.stream.Collectors;
 public class FilmSessionController {
 
     private final FilmSessionService filmSessionService;
+    private final FilmService filmService;
+    private final HallService hallService;
 
-    public FilmSessionController(FilmSessionService filmSessionService) {
+    public FilmSessionController(FilmSessionService filmSessionService,
+                                 HallService hallService, FilmService filmService) {
         this.filmSessionService = filmSessionService;
+        this.hallService = hallService;
+        this.filmService = filmService;
     }
 
     @GetMapping
@@ -25,5 +35,56 @@ public class FilmSessionController {
         model.addAttribute("film_sessions", filmSessionService.findAll().stream().map(
                 filmSessionService::toView).collect(Collectors.toList()));
         return "film_sessions/list";
+    }
+
+    @GetMapping("/create")
+    public String getCreationPage(Model model) {
+        model.addAttribute("halls", hallService.findAll());
+        model.addAttribute("films", filmService.findAll());
+        return "film_sessions/create";
+    }
+
+    @GetMapping("/{id}")
+    public String getById(Model model, @PathVariable int id) {
+        model.addAttribute("film_session", filmSessionService.findById(id).orElseThrow());
+        model.addAttribute("halls", hallService.findAll());
+        model.addAttribute("films", filmService.findAll());
+        return "film_sessions/one";
+    }
+
+    @PostMapping("/create")
+    public String create(@ModelAttribute FilmSession filmSession, Model model) {
+        try {
+            filmSessionService.save(filmSession);
+            return "redirect:/film_sessions";
+        } catch (Exception exception) {
+            model.addAttribute("message", exception.getMessage());
+            return "errors/404";
+        }
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute FilmSession filmSession, Model model) {
+        try {
+            var isUpdated = filmSessionService.update(filmSession);
+            if (!isUpdated) {
+                model.addAttribute("message", "Сеанс с указанным идентификатором не найден");
+                return "errors/404";
+            }
+            return "redirect:/film_sessions";
+        } catch (Exception exception) {
+            model.addAttribute("message", exception.getMessage());
+            return "errors/404";
+        }
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(Model model, @PathVariable int id) {
+        var isDeleted = filmSessionService.deleteById(id);
+        if (!isDeleted) {
+            model.addAttribute("message", "Сеанс с указанным идентификатором не найден");
+            return "errors/404";
+        }
+        return "redirect:/film_sessions";
     }
 }

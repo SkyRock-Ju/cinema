@@ -28,7 +28,7 @@ public class Sql2oFilmRepository implements FilmRepository {
         try (var connection = sql2o.open()) {
             var sql = """
                     INSERT INTO films(name, description, year, genre_id, minimal_age, duration_in_minutes, file_id)
-                    VALUES (:name, :description, :year, :genreId, :minimalAge, :durationInMinute, :fileId)
+                    VALUES (:name, :description, :year, :genreId, :minimalAge, :durationInMinutes, :fileId)
                     """;
             var query = connection.createQuery(sql, true)
                     .addParameter("name", film.getName())
@@ -36,7 +36,7 @@ public class Sql2oFilmRepository implements FilmRepository {
                     .addParameter("year", film.getYear())
                     .addParameter("genreId", film.getGenreId())
                     .addParameter("minimalAge", film.getMinimalAge())
-                    .addParameter("durationInMinute", film.getDurationInMinute())
+                    .addParameter("durationInMinutes", film.getDurationInMinutes())
                     .addParameter("fileId", film.getFileId());
             int generatedId = query.executeUpdate().getKey(Integer.class);
             film.setId(generatedId);
@@ -54,7 +54,7 @@ public class Sql2oFilmRepository implements FilmRepository {
                     UPDATE films
                     SET name = :name, description = :description, year = :year,
                     genre_id = :genreId, minimal_age = :minimalAge,
-                    duration_in_minute = :durationInMinute, file_id = :fileId
+                    duration_in_minutes = :durationInMinutes, file_id = :fileId
                     WHERE id = :id
                     """;
             var query = connection.createQuery(sql)
@@ -63,8 +63,9 @@ public class Sql2oFilmRepository implements FilmRepository {
                     .addParameter("year", film.getYear())
                     .addParameter("genreId", film.getGenreId())
                     .addParameter("minimalAge", film.getMinimalAge())
-                    .addParameter("durationInMinute", film.getDurationInMinute())
-                    .addParameter("fileId", film.getFileId());
+                    .addParameter("durationInMinutes", film.getDurationInMinutes())
+                    .addParameter("fileId", film.getFileId())
+                    .addParameter("id", film.getId());
             var affectedRows = query.executeUpdate().getResult();
             return affectedRows > 0;
         }
@@ -103,5 +104,4 @@ public class Sql2oFilmRepository implements FilmRepository {
             return affectedRows > 0;
         }
     }
-
 }

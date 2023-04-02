@@ -58,8 +58,10 @@ public class SimpleFilmService implements FilmService {
                         film.getDescription(),
                         film.getYear(),
                         film.getMinimalAge(),
-                        film.getDurationInMinute(),
-                        genreService.findById(film.getGenreId()).orElseThrow().getName()
+                        film.getDurationInMinutes(),
+                        genreService.findById(film.getGenreId()).orElseThrow().getName(),
+                        film.getGenreId(),
+                        film.getFileId()
                 )).collect(Collectors.toList());
     }
 
@@ -73,8 +75,10 @@ public class SimpleFilmService implements FilmService {
                 film.getDescription(),
                 film.getYear(),
                 film.getMinimalAge(),
-                film.getDurationInMinute(),
-                genre.getName()
+                film.getDurationInMinutes(),
+                genre.getName(),
+                film.getGenreId(),
+                film.getFileId()
         );
     }
 

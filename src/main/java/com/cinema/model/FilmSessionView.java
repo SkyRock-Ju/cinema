@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class FilmSessionView {
 
+    private int id;
     private int filmId;
     private String filmName;
     private String hallNumber;
@@ -11,13 +12,23 @@ public class FilmSessionView {
     private LocalDateTime endTime;
     private int price;
 
-    public FilmSessionView(int filmId, String filmName, String hallNumber, LocalDateTime startTime, LocalDateTime endTime, int price) {
+    public FilmSessionView(int id, int filmId, String filmName, String hallNumber,
+                           LocalDateTime startTime, LocalDateTime endTime, int price) {
+        this.id = id;
         this.filmId = filmId;
         this.filmName = filmName;
         this.hallNumber = hallNumber;
         this.startTime = startTime;
         this.endTime = endTime;
         this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getFilmId() {

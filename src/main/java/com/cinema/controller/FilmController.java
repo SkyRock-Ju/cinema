@@ -39,6 +39,7 @@ public class FilmController {
     @GetMapping("/{id}")
     public String getById(Model model, @PathVariable int id) {
         var filmDto = filmService.findById(id);
+        model.addAttribute("genres", genreService.findAll());
         model.addAttribute("film", filmDto);
         return "films/one";
     }
@@ -54,7 +55,7 @@ public class FilmController {
         }
     }
 
-    @PutMapping("/update")
+    @PostMapping("/update")
     public String update(@ModelAttribute Film film, @RequestParam MultipartFile file, Model model) {
         try {
             var isUpdated = filmService.update(film, new FileDto(file.getOriginalFilename(), file.getBytes()));

@@ -1,5 +1,7 @@
 package com.cinema.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Objects;
@@ -18,9 +20,14 @@ public class FilmSession {
     private int id;
     private int filmId;
     private int hallsId;
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime startTime;
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime endTime;
     private int price;
+
+    public FilmSession(){
+    }
 
     public FilmSession(int id, int filmId, int hallsId, LocalDateTime startTime, LocalDateTime endTime, int price) {
         this.id = id;

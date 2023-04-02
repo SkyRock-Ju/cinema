@@ -9,6 +9,7 @@ import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @ThreadSafe
 @Service
@@ -30,15 +31,34 @@ public class SimpleFilmSessionService implements FilmSessionService {
     @Override
     public Collection<FilmSession> findAll() { return filmSessionRepository.findAll(); }
 
+    public Optional<FilmSession> findById(int id) {
+        return filmSessionRepository.findById(id);
+    }
+
     @Override
     public FilmSessionView toView(FilmSession filmSession) {
-        var test = new FilmSessionView(
+        return new FilmSessionView(
+                filmSession.getId(),
                 filmSession.getFilmId(),
                 filmRepository.findById(filmSession.getFilmId()).orElseThrow().getName(),
                 hallRepository.findById(filmSession.getHallsId()).orElseThrow().getName(),
                 filmSession.getStartTime(),
                 filmSession.getEndTime(),
                 filmSession.getPrice());
-        return test;
+    }
+
+    @Override
+    public FilmSession save(FilmSession filmSession) {
+        return filmSessionRepository.save(filmSession);
+    }
+
+    @Override
+    public boolean update(FilmSession filmSession) {
+        return filmSessionRepository.update(filmSession);
+    }
+
+    @Override
+    public boolean deleteById(int id) {
+        return filmSessionRepository.deleteById(id);
     }
 }

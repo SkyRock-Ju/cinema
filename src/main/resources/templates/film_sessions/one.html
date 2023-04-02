@@ -14,7 +14,7 @@
             integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
             crossorigin="anonymous"></script>
 
-    <title>Информация о фильме</title>
+    <title>Информация о сеансе</title>
 </head>
 <body>
 <div class="container-fluid p-0">
@@ -45,58 +45,46 @@
         </div>
     </nav>
     <div class="container">
-        <form class="mt-3" th:action="@{/films/update}" method="post" th:object="${film}" enctype="multipart/form-data">
+        <form class="mt-3" th:action="@{/film_sessions/update}" method="post" th:object="${film_session}">
             <input type="hidden" name="id" th:field="*{id}">
-            <input type="hidden" name="fileId" th:field="*{fileId}">
             <div class="row mb-3">
-                <div class="col-3">
-                    <div class="mb-3">
-                        <img th:src="@{/files/{fileId}(fileId=*{fileId})}" class="w-100" alt="No image">
-                    </div>
-                    <div class="mb-3">
-                        <input class="form-control form-control-sm w-100" type="file" id="formFile" name="file">
-                    </div>
-                </div>
                 <div class="mb-3">
-                    <label for="name" class="form-label"><b>Название фильма</b></label>
-                    <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
-                           placeholder="Введите название фильма">
-                </div>
-                <div class="mb-3">
-                    <label for="description" class="form-label"><b>Описание</b></label>
-                    <textarea class="form-control" id="description" name="description" th:field="*{description}"
-                              rows="25" placeholder="Напишите синопсис фильма"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="year" class="form-label"><b>Год выхода фильма</b></label>
-                    <input type="number" class="form-control" id="year" name="year" th:field="*{year}"
-                           placeholder="Введите год выхода фильма">
-                </div>
-                <div class="mb-3">
-                    <label for="genre"><b>Жанр</b></label>
-                    <select class="form-control" id="genre" name="genreId">
-                        <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}"
-                                th:field="*{genreId}" th:selected="${genre.id==genreId}"></option>
+                    <label for="filmId"><b>Название фильма</b></label>
+                    <select class="form-control" id="filmId" name="filmId">
+                        <option th:each="film : ${films}" th:value="${film.id}" th:text="${film.name}"
+                                th:field="*{filmId}" th:selected="${film.id==filmId}"></option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="durationInMinutes" class="form-label"><b>Продолжительносить фильма</b></label>
-                    <input type="number" class="form-control" id="durationInMinutes" name="durationInMinutes"
-                           th:field="*{durationInMinutes}"
-                           placeholder="Введите продолжительность фильма">
+                    <label for="hallsId"><b>Номер зала</b></label>
+                    <select class="form-control" id="hallsId" name="hallsId">
+                        <option th:each="hall : ${halls}" th:value="${hall.id}" th:text="${hall.name}"
+                                th:field="*{hallsId}" th:selected="${hall.id==hallsId}"></option>
+                    </select>
                 </div>
                 <div class="mb-3">
-                    <label for="minimalAge" class="form-label"><b>Возрастное ограничение</b></label>
-                    <input type="number" class="form-control" id="minimalAge" name="minimalAge" th:field="*{minimalAge}"
+                    <label for="startTime" class="form-label"><b>Начало сеанса</b></label>
+                    <input type="datetime-local" class="form-control" id="startTime" name="startTime"
+                           th:field="*{startTime}" placeholder="Выберите начало сеанса">
+                </div>
+                <div class="mb-3">
+                    <label for="endTime" class="form-label"><b>Начало сеанса</b></label>
+                    <input type="datetime-local" class="form-control" id="endTime" name="endTime"
+                           th:field="*{endTime}" placeholder="Выберите конец сеанса">
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label"><b>Цена билета</b></label>
+                    <input type="number" class="form-control" id="price" name="price" th:field="*{price}"
                            placeholder="Введите минимальный возраст зрителя">
                 </div>
                 <div class="mb-3 row">
                     <div class="col-6"></div>
                     <div class="col-6">
                         <div class="row">
-                            <div class="col-4"><a class="btn btn-light w-100" th:href="@{/films}">Отмена</a></div>
+                            <div class="col-4"><a class="btn btn-light w-100" th:href="@{/film_sessions}">Отмена</a>
+                            </div>
                             <div class="col-4"><a class="btn btn-danger w-100"
-                                                  th:href="@{/films/delete/{id}(id=${film.id})}">Удалить</a>
+                                                  th:href="@{/film_sessions/delete/{id}(id=${film_session.id})}">Удалить</a>
                             </div>
                             <div class="col-4">
                                 <button class="btn btn-success w-100" type="submit">Обновить</button>
