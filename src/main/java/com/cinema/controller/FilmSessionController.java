@@ -1,7 +1,5 @@
 package com.cinema.controller;
 
-import com.cinema.model.FileDto;
-import com.cinema.model.Film;
 import com.cinema.model.FilmSession;
 import com.cinema.service.FilmService;
 import com.cinema.service.FilmSessionService;
@@ -10,7 +8,6 @@ import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.stream.Collectors;
 

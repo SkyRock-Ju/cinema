@@ -1,8 +1,17 @@
 package com.cinema.model;
 
+import java.util.Map;
 import java.util.Objects;
 
 public class Ticket {
+
+    public static final Map<String, String> COLUMN_MAPPING = Map.of(
+            "id", "id",
+            "session_id", "sessionId",
+            "row_number", "rowNumber",
+            "place_number", "placeNumber",
+            "user_id", "userId"
+    );
 
     private int id;
     private int sessionId;
@@ -12,6 +21,13 @@ public class Ticket {
 
     public Ticket(int id, int sessionId, int rowNumber, int placeNumber, int userId) {
         this.id = id;
+        this.sessionId = sessionId;
+        this.rowNumber = rowNumber;
+        this.placeNumber = placeNumber;
+        this.userId = userId;
+    }
+
+    public Ticket(int sessionId, int rowNumber, int placeNumber, int userId) {
         this.sessionId = sessionId;
         this.rowNumber = rowNumber;
         this.placeNumber = placeNumber;

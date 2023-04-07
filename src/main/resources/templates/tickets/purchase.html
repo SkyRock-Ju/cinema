@@ -46,40 +46,47 @@
         </div>
     </nav>
     <div class="container">
-        <form class="mt-3" th:action="@{/purchase}" method="post">
+        <div class="row">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Название фильма</th>
+                    <th scope="col">Номер зала</th>
+                    <th scope="col">Начало сеанса</th>
+                    <th scope="col">Конец сеанса</th>
+                    <th scope="col">Цена билета</th>
+                </tr>
+                </thead>
+                <tbody>
+                <td th:text="${film_session.filmName}"/>
+                <td th:text="${film_session.hallNumber}"/>
+                <td th:text="${film_session.startTime}"/>
+                <td th:text="${film_session.endTime}"/>
+                <td th:text="${film_session.price}"/>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container">
+        <form class="mt-3" th:action="@{/purchase}" method="post" th:object="${ticket_row_place}">
             <div class="mb-3">
-                <label for="filmId"><b>Название фильма</b></label>
-                <select class="form-control" id="filmId" name="filmId">
-                    <option th:each="film : ${films}" th:value="${film.id}" th:text="${film.name}"></option>
+                <label for="rowNumber"><b>Ряд</b></label>
+                <select class="form-control" id="rowNumber" name="rowNumber">
+                    <option th:each="row : ${rows}" th:value="${row}" th:text="${row}"></option>
                 </select>
             </div>
             <div class="mb-3">
-                <label for="hallsId"><b>Номер зала</b></label>
-                <select class="form-control" id="hallsId" name="hallsId">
-                    <option th:each="hall : ${halls}" th:value="${hall.id}" th:text="${hall.name}"></option>
+                <label for="placeNumber"><b>Место</b></label>
+                <select class="form-control" id="placeNumber" name="placeNumber">
+                    <option th:each="place : ${places}" th:value="${place}" th:text="${place}"></option>
                 </select>
-            </div>
-            <div class="mb-3">
-                <label for="startTime" class="form-label"><b>Начало сеанса</b></label>
-                <input type="datetime-local" class="form-control" id="startTime" name="startTime"
-                       placeholder="Выберите начало сеанса">
-            </div>
-            <div class="mb-3">
-                <label for="endTime" class="form-label"><b>Конец сеанса</b></label>
-                <input type="datetime-local" class="form-control" id="endTime" name="endTime"
-                       placeholder="Выберите конец сеанса">
-            </div>
-            <div class="mb-3">
-                <label for="price" class="form-label"><b>Цена билета</b></label>
-                <input type="price" class="form-control" id="price" name="price" placeholder="Введите цену на билеты">
             </div>
             <div class="mb-3 row">
-                <div class="col-6"></div>
                 <div class="col-6">
                     <div class="row">
                         <div class="col-6"><a class="btn btn-danger w-100" th:href="@{/film_sessions}">Отмена</a></div>
                         <div class="col-6">
-                            <button class="btn btn-primary w-100" type="submit">Сохранить</button>
+                            <button class="btn btn-primary w-100" type="submit">Купить</button>
                         </div>
                     </div>
                 </div>
