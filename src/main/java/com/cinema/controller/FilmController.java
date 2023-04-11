@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.NoSuchElementException;
+
 @ThreadSafe
 @Controller
 @RequestMapping("/films")
@@ -38,9 +40,14 @@ public class FilmController {
 
     @GetMapping("/{id}")
     public String getById(Model model, @PathVariable int id) {
-        var filmDto = filmService.findById(id);
-        model.addAttribute("genres", genreService.findAll());
-        model.addAttribute("film", filmDto);
+        try {
+            var filmDto = filmService.findById(id);
+            model.addAttribute("genres", genreService.findAll());
+            model.addAttribute("film", filmDto);
+        } catch (NoSuchElementException exception) {
+            model.addAttribute("message", exception.getMessage());
+            return "errors/404";
+        }
         return "films/one";
     }
 

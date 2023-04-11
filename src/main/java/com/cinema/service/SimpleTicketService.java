@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @ThreadSafe
 @Service
-public class SimpleTicketService implements TicketService{
+public class SimpleTicketService implements TicketService {
 
     private final Sql2oTicketRepository sql2oTicketRepository;
 

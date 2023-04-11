@@ -88,9 +88,13 @@ public class Film {
         this.minimalAge = minimalAge;
     }
 
-    public int getDurationInMinutes() { return durationInMinutes; }
+    public int getDurationInMinutes() {
+        return durationInMinutes;
+    }
 
-    public void setDurationInMinutes(int durationInMinutes) { this.durationInMinutes = durationInMinutes; }
+    public void setDurationInMinutes(int durationInMinutes) {
+        this.durationInMinutes = durationInMinutes;
+    }
 
     public int getFileId() {
         return fileId;
@@ -102,8 +106,12 @@ public class Film {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Film film = (Film) o;
         return id == film.id && Objects.equals(name, film.name);
     }

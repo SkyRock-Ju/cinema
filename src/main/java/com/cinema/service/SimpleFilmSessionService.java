@@ -15,7 +15,6 @@ import java.util.Optional;
 @Service
 public class SimpleFilmSessionService implements FilmSessionService {
 
-
     private final FilmSessionRepository filmSessionRepository;
     private final FilmRepository filmRepository;
     private final HallRepository hallRepository;
@@ -29,7 +28,9 @@ public class SimpleFilmSessionService implements FilmSessionService {
     }
 
     @Override
-    public Collection<FilmSession> findAll() { return filmSessionRepository.findAll(); }
+    public Collection<FilmSession> findAll() {
+        return filmSessionRepository.findAll();
+    }
 
     public Optional<FilmSession> findById(int id) {
         return filmSessionRepository.findById(id);

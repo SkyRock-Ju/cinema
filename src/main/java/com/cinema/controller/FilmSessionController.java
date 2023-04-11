@@ -43,7 +43,12 @@ public class FilmSessionController {
 
     @GetMapping("/{id}")
     public String getById(Model model, @PathVariable int id) {
-        model.addAttribute("film_session", filmSessionService.findById(id).orElseThrow());
+        var filmSessionOptional = filmSessionService.findById(id);
+        if (filmSessionOptional.isEmpty()) {
+            model.addAttribute("message", "Сеанс с указанным идентификатором не найден");
+            return "errors/404";
+        }
+        model.addAttribute("film_session", filmSessionOptional.orElseThrow());
         model.addAttribute("halls", hallService.findAll());
         model.addAttribute("films", filmService.findAll());
         return "film_sessions/one";

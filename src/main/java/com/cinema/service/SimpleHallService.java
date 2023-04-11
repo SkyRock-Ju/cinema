@@ -18,6 +18,7 @@ public class SimpleHallService implements HallService {
     public SimpleHallService(HallRepository sql2oHallRepository) {
         this.hallRepository = sql2oHallRepository;
     }
+
     @Override
     public Collection<Hall> findAll() {
         return hallRepository.findAll();

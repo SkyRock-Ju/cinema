@@ -2,8 +2,6 @@ package com.cinema.repository;
 
 import com.cinema.model.FilmSession;
 import net.jcip.annotations.ThreadSafe;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 
@@ -14,8 +12,6 @@ import java.util.Optional;
 @Repository
 public class Sql2oFilmSessionRepository implements FilmSessionRepository {
 
-
-    private static Logger log = LoggerFactory.getLogger(Sql2oFilmSessionRepository.class);
     private final Sql2o sql2o;
 
     public Sql2oFilmSessionRepository(Sql2o sql2o) {

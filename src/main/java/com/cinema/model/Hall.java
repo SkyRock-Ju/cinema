@@ -13,7 +13,6 @@ public class Hall {
             "description", "description"
     );
 
-
     private int id;
     private String name;
     private int rowCount;

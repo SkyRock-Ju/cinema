@@ -1,13 +1,11 @@
 package com.cinema.model;
 
-import java.util.Objects;
-
 public class TicketRowPlace {
 
     private int rowNumber;
     private int placeNumber;
 
-    public TicketRowPlace( int rowNumber, int placeNumber) {
+    public TicketRowPlace(int rowNumber, int placeNumber) {
         this.rowNumber = rowNumber;
         this.placeNumber = placeNumber;
     }

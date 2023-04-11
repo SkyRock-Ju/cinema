@@ -7,7 +7,6 @@ import com.cinema.model.User;
 import com.cinema.service.FilmSessionService;
 import com.cinema.service.HallService;
 import com.cinema.service.TicketService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
@@ -62,14 +61,18 @@ public class TicketPurchaseController {
                     ticket.getRowNumber(), ticket.getPlaceNumber(), user.getId()));
             if (result.isEmpty()) {
                 model.addAttribute("message",
-                        "Не удалось приобрести билет на заданное место. " +
-                                "Вероятно оно уже занято. " +
-                        "Перейдите на страницу бронирования билетов и попробуйте снова.");
+                        "Не удалось приобрести билет на заданное место. "
+                                + "Вероятно оно уже занято. "
+                                + "Перейдите на страницу бронирования билетов и попробуйте снова.");
                 return "errors/404";
             }
             model.addAttribute("message",
-                    "Вы успешно приобрели билет на [" + ticket.getRowNumber() + "] ряд " +
-                            "[" + ticket.getPlaceNumber() + "] место");
+                    "Вы успешно приобрели билет на ["
+                            + ticket.getRowNumber()
+                            + "] ряд "
+                            + "["
+                            + ticket.getPlaceNumber()
+                            + "] место");
             return "tickets/success";
         } catch (Exception exception) {
             model.addAttribute("message", exception.getMessage());

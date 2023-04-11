@@ -8,6 +8,7 @@ import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -67,6 +68,9 @@ public class SimpleFilmService implements FilmService {
 
     @Override
     public FilmDto findById(int id) {
+        if (filmRepository.findById(id).isEmpty()) {
+            throw new NoSuchElementException("Фильм с указанным идентификатором не найден");
+        }
         var film = filmRepository.findById(id).orElseThrow();
         var genre = genreService.findById(film.getGenreId()).orElseThrow();
         return new FilmDto(

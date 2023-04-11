@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @ThreadSafe
 @Repository
-public class Sql2oTicketRepository implements TicketRepository{
+public class Sql2oTicketRepository implements TicketRepository {
 
     private final Sql2o sql2o;
     private static Logger log = LoggerFactory.getLogger(Sql2oFilmRepository.class);

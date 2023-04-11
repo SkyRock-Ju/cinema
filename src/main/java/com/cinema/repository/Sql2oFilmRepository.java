@@ -16,7 +16,7 @@ import java.util.Optional;
 public class Sql2oFilmRepository implements FilmRepository {
 
     private final Sql2o sql2o;
-    private static Logger log = LoggerFactory.getLogger(Sql2oFilmRepository.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Sql2oFilmRepository.class);
 
     public Sql2oFilmRepository(Sql2o sql2o) {
         this.sql2o = sql2o;
@@ -41,7 +41,7 @@ public class Sql2oFilmRepository implements FilmRepository {
             film.setId(generatedId);
             return Optional.of(film);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+            LOGGER.error(e.getMessage(), e);
         }
         return Optional.empty();
     }
@@ -89,7 +89,7 @@ public class Sql2oFilmRepository implements FilmRepository {
             }
             return result.map(films -> films.get(0));
         } catch (NoSuchElementException exception) {
-            log.error(exception.getMessage(), exception);
+            LOGGER.error(exception.getMessage(), exception);
         }
         return Optional.empty();
     }

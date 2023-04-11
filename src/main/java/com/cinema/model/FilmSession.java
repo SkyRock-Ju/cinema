@@ -26,7 +26,7 @@ public class FilmSession {
     private LocalDateTime endTime;
     private int price;
 
-    public FilmSession(){
+    public FilmSession() {
     }
 
     public FilmSession(int id, int filmId, int hallsId, LocalDateTime startTime, LocalDateTime endTime, int price) {
@@ -88,8 +88,12 @@ public class FilmSession {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         FilmSession that = (FilmSession) o;
         return id == that.id;
     }
