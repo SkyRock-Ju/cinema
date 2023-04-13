@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: repository.Sql2oUserRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.372 s <<< FAILURE! - in repository.Sql2oUserRepositoryTest
+saveUserThenSaveUserWithSameEmail  Time elapsed: 0.013 s  <<< ERROR!
+java.util.NoSuchElementException: No value present
+	at repository.Sql2oUserRepositoryTest.saveUserThenSaveUserWithSameEmail(Sql2oUserRepositoryTest.java:59)
+
+whenSaveSeveralThenGetAll  Time elapsed: 0.008 s  <<< ERROR!
+java.util.NoSuchElementException: No value present
+	at repository.Sql2oUserRepositoryTest.whenSaveSeveralThenGetAll(Sql2oUserRepositoryTest.java:71)
+
+saveUserAndExpectSameUser  Time elapsed: 0.003 s  <<< ERROR!
+java.util.NoSuchElementException: No value present
+	at repository.Sql2oUserRepositoryTest.saveUserAndExpectSameUser(Sql2oUserRepositoryTest.java:51)
+
+whenDeleteThenGetEmptyOptional  Time elapsed: 0.004 s  <<< ERROR!
+java.util.NoSuchElementException: No value present
+	at repository.Sql2oUserRepositoryTest.whenDeleteThenGetEmptyOptional(Sql2oUserRepositoryTest.java:83)
+

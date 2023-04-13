@@ -21,9 +21,9 @@ import java.util.List;
 @RequestMapping("/purchase")
 public class TicketPurchaseController {
 
-    TicketService ticketService;
-    FilmSessionService filmSessionService;
-    HallService hallService;
+    private final TicketService ticketService;
+    private final FilmSessionService filmSessionService;
+    private final HallService hallService;
 
     public TicketPurchaseController(TicketService ticketService, FilmSessionService filmSessionService,
                                     HallService hallService) {
@@ -33,7 +33,7 @@ public class TicketPurchaseController {
     }
 
     @GetMapping("/{id}")
-    public String getAll(Model model, @PathVariable int id, HttpSession httpSession) {
+    public String getPurchasePage(Model model, @PathVariable int id, HttpSession httpSession) {
         var filmSession = filmSessionService.findById(id).orElseThrow();
         var halls = hallService.findById(filmSession.getHallsId());
         List<Integer> rows = new ArrayList<>();

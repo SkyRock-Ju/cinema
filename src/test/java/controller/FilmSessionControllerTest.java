@@ -56,7 +56,7 @@ public class FilmSessionControllerTest {
     }
 
     @Test
-    public void whenPostFilmSessionWithFileThenSameDataAndRedirectToFilmSessionPage() {
+    public void whenPostFilmSessionThenSameDataAndRedirectToFilmSessionPage() {
         var filmSession = new FilmSession(1, 1, 1,
                 LocalDateTime.now(), LocalDateTime.now(), 1);
         var filmSessionArgumentCaptor = ArgumentCaptor.forClass(FilmSession.class);
