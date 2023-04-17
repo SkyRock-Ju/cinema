@@ -26,7 +26,7 @@ public class Sql2oFilmRepository implements FilmRepository {
     public Optional<Film> save(Film film) {
         try (var connection = sql2o.open()) {
             var sql = """
-                    INSERT INTO films(name, description, year, genre_id, minimal_age, duration_in_minutes, file_id)
+                    INSERT INTO films (name, description, "year", genre_id, minimal_age, duration_in_minutes, file_id)
                     VALUES (:name, :description, :year, :genreId, :minimalAge, :durationInMinutes, :fileId)
                     """;
             var query = connection.createQuery(sql, true)
@@ -51,7 +51,7 @@ public class Sql2oFilmRepository implements FilmRepository {
         try (var connection = sql2o.open()) {
             var sql = """
                     UPDATE films
-                    SET name = :name, description = :description, year = :year,
+                    SET name = :name, description = :description, "year" = :year,
                     genre_id = :genreId, minimal_age = :minimalAge,
                     duration_in_minutes = :durationInMinutes, file_id = :fileId
                     WHERE id = :id
