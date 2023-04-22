@@ -67,13 +67,13 @@ public class SimpleFilmService implements FilmService {
     }
 
     @Override
-    public FilmDto findById(int id) {
+    public Optional<FilmDto> findById(int id) {
         if (filmRepository.findById(id).isEmpty()) {
-            throw new NoSuchElementException("Фильм с указанным идентификатором не найден");
+            return Optional.empty();
         }
         var film = filmRepository.findById(id).orElseThrow();
         var genre = genreService.findById(film.getGenreId()).orElseThrow();
-        return new FilmDto(
+        return Optional.of(new FilmDto(
                 film.getId(),
                 film.getName(),
                 film.getDescription(),
@@ -83,7 +83,7 @@ public class SimpleFilmService implements FilmService {
                 genre.getName(),
                 film.getGenreId(),
                 film.getFileId()
-        );
+        ));
     }
 
     @Override

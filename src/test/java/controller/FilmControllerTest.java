@@ -100,7 +100,7 @@ public class FilmControllerTest {
     public void whenRequestFilmByIdThenGetCorrespondingFilm() {
         var filmDto = new FilmDto(1, "film1", "desc1",
                 2002, 1, 18, "action", 2, 2);
-        when(filmService.findById(filmDto.getId())).thenReturn(filmDto);
+        when(filmService.findById(filmDto.getId())).thenReturn(Optional.of(filmDto));
         var model = new ConcurrentModel();
         var view = filmController.getById(model, filmDto.getId());
         var actualFilm = model.getAttribute("film");
@@ -110,13 +110,12 @@ public class FilmControllerTest {
 
     @Test
     public void whenRequestFilmByNotExistingIdThenGetError() {
-        var expectedException = new NoSuchElementException("Фильм с указанным идентификатором не найден");
-        when(filmService.findById(1)).thenThrow(expectedException);
+        when(filmService.findById(1)).thenReturn(Optional.empty());
         var model = new ConcurrentModel();
         var view = filmController.getById(model, 1);
-        var actualExceptionMessage = model.getAttribute("message");
+        var actualMessage = model.getAttribute("message");
         assertThat(view).isEqualTo("errors/404");
-        assertThat(actualExceptionMessage).isEqualTo(expectedException.getMessage());
+        assertThat(actualMessage).isEqualTo("Фильм с указанным идентификатором не найден");
     }
 
     @Test

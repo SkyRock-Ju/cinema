@@ -15,7 +15,7 @@ public interface FilmService {
 
     Collection<FilmDto> findAll();
 
-    FilmDto findById(int id);
+    Optional<FilmDto> findById(int id);
 
     boolean deleteById(int id);
 

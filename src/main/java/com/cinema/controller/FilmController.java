@@ -40,14 +40,13 @@ public class FilmController {
 
     @GetMapping("/{id}")
     public String getById(Model model, @PathVariable int id) {
-        try {
-            var filmDto = filmService.findById(id);
-            model.addAttribute("genres", genreService.findAll());
-            model.addAttribute("film", filmDto);
-        } catch (NoSuchElementException exception) {
-            model.addAttribute("message", exception.getMessage());
+        var filmDto = filmService.findById(id);
+        if (filmDto.isEmpty()) {
+            model.addAttribute("message", "Фильм с указанным идентификатором не найден");
             return "errors/404";
         }
+        model.addAttribute("genres", genreService.findAll());
+        model.addAttribute("film", filmDto.orElseThrow());
         return "films/one";
     }
 
