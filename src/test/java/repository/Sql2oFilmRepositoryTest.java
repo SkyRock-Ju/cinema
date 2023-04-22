@@ -59,20 +59,20 @@ public class Sql2oFilmRepositoryTest {
 
     @Test
     public void whenSaveThenGetSame() {
-        var film = sql2oFilmRepository.save(new Film(0, "film", "description", 2002, 1,
-                8, 120, file.getId()));
+        var film = sql2oFilmRepository.save(new Film(0, "film", "description",
+                2002, 1, 8, 120, file.getId()));
         var savedFilm = sql2oFilmRepository.findById(film.orElseThrow().getId());
         assertThat(savedFilm).usingRecursiveComparison().isEqualTo(film);
     }
 
     @Test
     public void whenSaveSeveralThenGetAll() {
-        var film1 = sql2oFilmRepository.save(new Film(0, "film1", "description1", 2002, 1,
-                8, 120, file.getId()));
-        var film2 = sql2oFilmRepository.save(new Film(0, "film2", "description2", 2002, 1,
-                8, 120, file.getId()));
-        var film3 = sql2oFilmRepository.save(new Film(0, "film3", "description3", 2002, 1,
-                8, 120, file.getId()));
+        var film1 = sql2oFilmRepository.save(new Film(0, "film1", "description1",
+                2002, 1, 8, 120, file.getId()));
+        var film2 = sql2oFilmRepository.save(new Film(0, "film2", "description2",
+                2002, 1, 8, 120, file.getId()));
+        var film3 = sql2oFilmRepository.save(new Film(0, "film3", "description3",
+                2002, 1, 8, 120, file.getId()));
         var result = sql2oFilmRepository.findAll();
         assertThat(result).isEqualTo(List.of(film1.orElseThrow(), film2.orElseThrow(), film3.orElseThrow()));
     }
@@ -85,8 +85,8 @@ public class Sql2oFilmRepositoryTest {
 
     @Test
     public void whenDeleteThenGetEmptyOptional() {
-        var film = sql2oFilmRepository.save(new Film(0, "film", "description", 2002, 1,
-                8, 120, file.getId()));
+        var film = sql2oFilmRepository.save(new Film(0, "film", "description",
+                2002, 1, 8, 120, file.getId()));
         var isDeleted = sql2oFilmRepository.deleteById(film.orElseThrow().getId());
         var savedFilm = sql2oFilmRepository.findById(film.orElseThrow().getId());
         assertThat(isDeleted).isTrue();
@@ -100,10 +100,10 @@ public class Sql2oFilmRepositoryTest {
 
     @Test
     public void whenUpdateThenGetUpdated() {
-        var film = sql2oFilmRepository.save(new Film(0, "film", "description", 2002, 1,
-                8, 120, file.getId()));
-        var updatedFilm = new Film(film.orElseThrow().getId(), "new film", "new description", 2002, 1,
-                8, 120, file.getId());
+        var film = sql2oFilmRepository.save(new Film(0, "film", "description",
+                2002, 1, 8, 120, file.getId()));
+        var updatedFilm = new Film(film.orElseThrow().getId(), "new film", "new description",
+                2002, 1, 8, 120, file.getId());
         var isUpdated = sql2oFilmRepository.update(updatedFilm);
         var savedFilm = sql2oFilmRepository.findById(updatedFilm.getId());
         assertThat(isUpdated).isTrue();
@@ -112,8 +112,8 @@ public class Sql2oFilmRepositoryTest {
 
     @Test
     public void whenUpdateNotExistingFilmThenGetFalse() {
-        var film = new Film(0, "film", "description", 2002, 1,
-                8, 120, file.getId());
+        var film = new Film(0, "film", "description",
+                2002, 1, 8, 120, file.getId());
         var isUpdated = sql2oFilmRepository.update(film);
         assertThat(isUpdated).isFalse();
     }

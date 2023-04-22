@@ -43,7 +43,8 @@ public class FilmSessionControllerTest {
         var model = new ConcurrentModel();
         var view = filmSessionController.getAll(model);
         var actualFilmSessions = model.getAttribute("film_sessions");
-        var expectedFilmSessionsView = filmSessions.stream().map(filmSessionService::toView).collect(Collectors.toList());
+        var expectedFilmSessionsView = filmSessions.stream().map(
+                filmSessionService::toView).collect(Collectors.toList());
         assertThat(view).isEqualTo("film_sessions/list");
         assertThat(actualFilmSessions).isEqualTo(expectedFilmSessionsView);
     }

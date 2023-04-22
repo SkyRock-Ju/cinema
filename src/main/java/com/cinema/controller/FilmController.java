@@ -67,7 +67,8 @@ public class FilmController {
         try {
             var isUpdated = filmService.update(film, new FileDto(file.getOriginalFilename(), file.getBytes()));
             if (!isUpdated) {
-                model.addAttribute("message", "Фильм с указанным идентификатором не найден");
+                model.addAttribute("message",
+                        "Фильм с указанным идентификатором не найден");
                 return "errors/404";
             }
             return "redirect:/films";

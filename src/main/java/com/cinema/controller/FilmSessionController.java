@@ -70,7 +70,8 @@ public class FilmSessionController {
         try {
             var isUpdated = filmSessionService.update(filmSession);
             if (!isUpdated) {
-                model.addAttribute("message", "Сеанс с указанным идентификатором не найден");
+                model.addAttribute("message",
+                        "Сеанс с указанным идентификатором не найден");
                 return "errors/404";
             }
             return "redirect:/film_sessions";
