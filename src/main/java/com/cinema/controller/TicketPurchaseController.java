@@ -67,12 +67,8 @@ public class TicketPurchaseController {
                 return "errors/404";
             }
             model.addAttribute("message",
-                    "Вы успешно приобрели билет на ["
-                            + ticket.getRowNumber()
-                            + "] ряд "
-                            + "["
-                            + ticket.getPlaceNumber()
-                            + "] место");
+                    String.format("Вы успешно приобрели билет на [%s] ряд [%s] место.",
+                            ticket.getRowNumber(), ticket.getPlaceNumber()));
             return "tickets/success";
         } catch (Exception exception) {
             model.addAttribute("message", exception.getMessage());
