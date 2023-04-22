@@ -51,8 +51,7 @@ public class Sql2oUserRepository implements UserRepository {
                             true)
                     .addParameter("email", email)
                     .addParameter("password", password);
-            var result = Optional.ofNullable(query.setColumnMappings(User.COLUMN_MAPPING).executeAndFetch(User.class));
-            return result.map(users -> users.get(0));
+            return Optional.ofNullable(query.setColumnMappings(User.COLUMN_MAPPING).executeAndFetchFirst(User.class));
         }
     }
 
