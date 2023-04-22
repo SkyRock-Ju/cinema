@@ -1,7 +1,7 @@
 package com.cinema.service;
 
 import com.cinema.model.FilmSession;
-import com.cinema.model.FilmSessionView;
+import com.cinema.model.dto.FilmSessionDto;
 import net.jcip.annotations.ThreadSafe;
 
 import java.util.Collection;
@@ -14,7 +14,7 @@ public interface FilmSessionService {
 
     Optional<FilmSession> findById(int id);
 
-    FilmSessionView toView(FilmSession filmSession);
+    FilmSessionDto toView(FilmSession filmSession);
 
     FilmSession save(FilmSession filmSession);
 

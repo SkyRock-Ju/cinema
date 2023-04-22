@@ -1,7 +1,7 @@
 package com.cinema.service;
 
 import com.cinema.model.File;
-import com.cinema.model.FileDto;
+import com.cinema.model.dto.FileDto;
 import net.jcip.annotations.ThreadSafe;
 
 import java.util.Optional;

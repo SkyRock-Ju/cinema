@@ -1,7 +1,7 @@
 package controller;
 
 import com.cinema.controller.FileController;
-import com.cinema.model.FileDto;
+import com.cinema.model.dto.FileDto;
 import com.cinema.service.FileService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

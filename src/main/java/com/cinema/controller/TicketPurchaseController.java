@@ -2,7 +2,7 @@ package com.cinema.controller;
 
 import com.cinema.model.FilmSession;
 import com.cinema.model.Ticket;
-import com.cinema.model.TicketRowPlace;
+import com.cinema.model.dto.TicketDto;
 import com.cinema.model.User;
 import com.cinema.service.FilmSessionService;
 import com.cinema.service.HallService;
@@ -53,7 +53,7 @@ public class TicketPurchaseController {
     }
 
     @PostMapping
-    public String create(@ModelAttribute TicketRowPlace ticket, Model model, HttpSession request) {
+    public String create(@ModelAttribute TicketDto ticket, Model model, HttpSession request) {
         try {
             FilmSession filmSession = (FilmSession) request.getAttribute("film_session");
             User user = (User) request.getAttribute("user");

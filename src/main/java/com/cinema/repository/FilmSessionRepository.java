@@ -1,7 +1,6 @@
 package com.cinema.repository;
 
 import com.cinema.model.FilmSession;
-import com.cinema.model.FilmSessionView;
 import net.jcip.annotations.ThreadSafe;
 
 import java.util.Collection;

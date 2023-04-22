@@ -1,11 +1,11 @@
-package com.cinema.model;
+package com.cinema.model.dto;
 
-public class TicketRowPlace {
+public class TicketDto {
 
     private int rowNumber;
     private int placeNumber;
 
-    public TicketRowPlace(int rowNumber, int placeNumber) {
+    public TicketDto(int rowNumber, int placeNumber) {
         this.rowNumber = rowNumber;
         this.placeNumber = placeNumber;
     }

@@ -1,9 +1,9 @@
 package controller;
 
 import com.cinema.controller.FilmController;
-import com.cinema.model.FileDto;
+import com.cinema.model.dto.FileDto;
 import com.cinema.model.Film;
-import com.cinema.model.FilmDto;
+import com.cinema.model.dto.FilmDto;
 import com.cinema.service.FilmService;
 import com.cinema.service.GenreService;
 import org.junit.jupiter.api.BeforeEach;

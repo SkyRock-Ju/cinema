@@ -1,7 +1,7 @@
 package com.cinema.service;
 
 import com.cinema.model.File;
-import com.cinema.model.FileDto;
+import com.cinema.model.dto.FileDto;
 import com.cinema.repository.FileRepository;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.beans.factory.annotation.Value;

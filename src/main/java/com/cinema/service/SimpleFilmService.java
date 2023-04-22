@@ -1,8 +1,8 @@
 package com.cinema.service;
 
-import com.cinema.model.FileDto;
+import com.cinema.model.dto.FileDto;
 import com.cinema.model.Film;
-import com.cinema.model.FilmDto;
+import com.cinema.model.dto.FilmDto;
 import com.cinema.repository.FilmRepository;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Service;

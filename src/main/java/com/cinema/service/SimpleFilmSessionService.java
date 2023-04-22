@@ -1,7 +1,7 @@
 package com.cinema.service;
 
 import com.cinema.model.FilmSession;
-import com.cinema.model.FilmSessionView;
+import com.cinema.model.dto.FilmSessionDto;
 import com.cinema.repository.FilmRepository;
 import com.cinema.repository.FilmSessionRepository;
 import com.cinema.repository.HallRepository;
@@ -37,8 +37,8 @@ public class SimpleFilmSessionService implements FilmSessionService {
     }
 
     @Override
-    public FilmSessionView toView(FilmSession filmSession) {
-        return new FilmSessionView(
+    public FilmSessionDto toView(FilmSession filmSession) {
+        return new FilmSessionDto(
                 filmSession.getId(),
                 filmSession.getFilmId(),
                 filmRepository.findById(filmSession.getFilmId()).orElseThrow().getName(),

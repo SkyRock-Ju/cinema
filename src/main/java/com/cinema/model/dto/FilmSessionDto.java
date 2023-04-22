@@ -1,8 +1,8 @@
-package com.cinema.model;
+package com.cinema.model.dto;
 
 import java.time.LocalDateTime;
 
-public class FilmSessionView {
+public class FilmSessionDto {
 
     private int id;
     private int filmId;
@@ -12,8 +12,8 @@ public class FilmSessionView {
     private LocalDateTime endTime;
     private int price;
 
-    public FilmSessionView(int id, int filmId, String filmName, String hallNumber,
-                           LocalDateTime startTime, LocalDateTime endTime, int price) {
+    public FilmSessionDto(int id, int filmId, String filmName, String hallNumber,
+                          LocalDateTime startTime, LocalDateTime endTime, int price) {
         this.id = id;
         this.filmId = filmId;
         this.filmName = filmName;

@@ -1,4 +1,4 @@
-package com.cinema.model;
+package com.cinema.model.dto;
 
 public class FileDto {
 

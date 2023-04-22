@@ -2,6 +2,7 @@ package controller;
 
 import com.cinema.controller.TicketPurchaseController;
 import com.cinema.model.*;
+import com.cinema.model.dto.TicketDto;
 import com.cinema.service.FilmSessionService;
 import com.cinema.service.HallService;
 import com.cinema.service.TicketService;
@@ -60,7 +61,7 @@ public class TicketPurchaseControllerTest {
     @Test
     public void whenPostTicketThenSameDataAndRedirectToSuccessPage() {
         var ticket = new Ticket(1, 1, 1, 1);
-        var ticketRowPlace = new TicketRowPlace(1, 1);
+        var ticketRowPlace = new TicketDto(1, 1);
         var ticketArgumentCaptor = ArgumentCaptor.forClass(Ticket.class);
         when(ticketService.save(ticketArgumentCaptor.capture())).thenReturn(Optional.of(ticket));
         var model = new ConcurrentModel();
@@ -83,7 +84,7 @@ public class TicketPurchaseControllerTest {
 
     @Test
     public void whenPostTicketThenErrorPage() {
-        var ticketRowPlace = new TicketRowPlace(1, 1);
+        var ticketRowPlace = new TicketDto(1, 1);
         when(ticketService.save(any())).thenReturn(Optional.empty());
         var model = new ConcurrentModel();
         var request = new MockHttpSession();
