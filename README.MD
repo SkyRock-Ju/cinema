@@ -25,12 +25,74 @@ Admin
 * Admins have 2 additional links on the header to add film and to add film session
 * They can edit already existing films and sessions
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## Technology stack.
 
+- **Java 17**
+- **Spring Boot 3.0.5**
+- **HTML 5**
+- **Thymeleaf 3.0.5**
+- **BOOTSTRAP 4.4.1**
+- **Liquibase 4.15.0**
+- **sql2o 1.6.0**
+- **H2 2.1.214**
+- **Mockito 3.5.13**
+- **Junit 5**
 
+## Environment requirements.
 
-### Built With
+- **Java 17**
+- **Maven 3.8**
+- **PostgresSQL 14**
+## Initializing project.
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-[![My Skills](https://skills.thijs.gg/icons?i=java,spring,postgres,html&theme=light)](https://www.java.com/en/download/help/index.html)
+- **Create DB**
+
+``` shell 
+create database cinema;
+```
+
+- **Run the project**
+
+``` shell 
+mvn spring-boot:run
+```
+
+## Interactions with application.
+
+-On main page you can see information about resources.
+![](images/1.PNG)
+
+-On film sessions page there are information about hall, movie name, start time, end time, ticket price.
+![](images/2.PNG)
+
+-As ADMIN ACCESS on this page you can click the link by the movie name and edit chosen film session.
+![](images/3.PNG)
+
+-On movies page there are information about movie name, description, release year, age restriction, duration of the movie and genre.
+![](images/4.PNG)
+
+-As ADMIN ACCESS on this page you can click the link by the movie name and edit chosen movie.
+![](images/5.PNG)
+
+-Only registered users can buy tickets. The registration page.
+![](images/6.PNG)
+
+-Login page.
+![](images/7.PNG)
+
+-If user input has errors, there are invalid form page for that.
+![](images/8.PNG)
+
+-As logged-in user there are feature to buy ticket by clicking the link on film sessions page.
+![](images/9.PNG)
+
+-If purchase was success user should see notification.
+![](images/10.PNG)
+
+-If ticket is unavailable user will see an error.
+![](images/11.PNG)
+
+## Контакты.
+- skyrockpk@gmail.com
+- <a href="https://t.me/julus_skyrock" target="_blank">Телеграм</a></h1>
 
