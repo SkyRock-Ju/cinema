@@ -20,8 +20,7 @@ public class SimpleUserService implements UserService {
 
     @Override
     public Optional<User> save(User user) {
-        userRepository.save(user);
-        return Optional.of(user);
+        return userRepository.save(user);
     }
 
     @Override
