@@ -29,8 +29,7 @@ public class FilmSessionController {
 
     @GetMapping
     public String getAll(Model model) {
-        model.addAttribute("film_sessions", filmSessionService.findAll().stream().map(
-                filmSessionService::toView).collect(Collectors.toList()));
+        model.addAttribute("film_sessions", filmSessionService.findAll());
         return "film_sessions/list";
     }
 

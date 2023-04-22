@@ -8,8 +8,9 @@ import com.cinema.repository.HallRepository;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @ThreadSafe
 @Service
@@ -28,8 +29,8 @@ public class SimpleFilmSessionService implements FilmSessionService {
     }
 
     @Override
-    public Collection<FilmSession> findAll() {
-        return filmSessionRepository.findAll();
+    public List<FilmSessionDto> findAll() {
+        return filmSessionRepository.findAll().stream().map(this::toView).collect(Collectors.toList());
     }
 
     public Optional<FilmSession> findById(int id) {

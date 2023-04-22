@@ -10,7 +10,7 @@ import java.util.Optional;
 @ThreadSafe
 public interface FilmSessionService {
 
-    Collection<FilmSession> findAll();
+    Collection<FilmSessionDto> findAll();
 
     Optional<FilmSession> findById(int id);
 

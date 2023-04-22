@@ -2,6 +2,7 @@ package controller;
 
 import com.cinema.controller.FilmSessionController;
 import com.cinema.model.FilmSession;
+import com.cinema.model.dto.FilmSessionDto;
 import com.cinema.service.FilmService;
 import com.cinema.service.FilmSessionService;
 import com.cinema.service.HallService;
@@ -34,19 +35,17 @@ public class FilmSessionControllerTest {
 
     @Test
     public void whenRequestFilmSessionListPageThenGetPageWithFilmSessions() {
-        var filmSession1 = new FilmSession(1, 1, 1,
-                LocalDateTime.now(), LocalDateTime.now(), 1);
-        var filmSession2 = new FilmSession(2, 2, 2,
-                LocalDateTime.now(), LocalDateTime.now(), 2);
+        var filmSession1 = new FilmSessionDto(1, 1, "name1",
+                "one", LocalDateTime.now(), LocalDateTime.now(), 1);
+        var filmSession2 = new FilmSessionDto(2, 2, "name2",
+                "two", LocalDateTime.now(), LocalDateTime.now(), 2);
         var filmSessions = List.of(filmSession1, filmSession2);
         when(filmSessionService.findAll()).thenReturn(filmSessions);
         var model = new ConcurrentModel();
         var view = filmSessionController.getAll(model);
         var actualFilmSessions = model.getAttribute("film_sessions");
-        var expectedFilmSessionsView = filmSessions.stream().map(
-                filmSessionService::toView).collect(Collectors.toList());
         assertThat(view).isEqualTo("film_sessions/list");
-        assertThat(actualFilmSessions).isEqualTo(expectedFilmSessionsView);
+        assertThat(actualFilmSessions).isEqualTo(filmSessions);
     }
 
     @Test
@@ -62,10 +61,8 @@ public class FilmSessionControllerTest {
                 LocalDateTime.now(), LocalDateTime.now(), 1);
         var filmSessionArgumentCaptor = ArgumentCaptor.forClass(FilmSession.class);
         when(filmSessionService.save(filmSessionArgumentCaptor.capture())).thenReturn(filmSession);
-        var model = new ConcurrentModel();
-        var view = filmSessionController.create(filmSession, model);
+        var view = filmSessionController.create(filmSession);
         var actualFilmSession = filmSessionArgumentCaptor.getValue();
-
         assertThat(view).isEqualTo("redirect:/film_sessions");
         assertThat(actualFilmSession).isEqualTo(filmSession);
     }
