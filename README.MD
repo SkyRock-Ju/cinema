@@ -60,37 +60,37 @@ mvn spring-boot:run
 ## Interactions with application.
 
 -On main page you can see information about resources.
-![](images/1.PNG)
+![](images/1.png)
 
 -On film sessions page there are information about hall, movie name, start time, end time, ticket price.
-![](images/2.PNG)
+![](images/2.png)
 
 -As ADMIN ACCESS on this page you can click the link by the movie name and edit chosen film session.
-![](images/3.PNG)
+![](images/3.png)
 
 -On movies page there are information about movie name, description, release year, age restriction, duration of the movie and genre.
-![](images/4.PNG)
+![](images/4.png)
 
 -As ADMIN ACCESS on this page you can click the link by the movie name and edit chosen movie.
-![](images/5.PNG)
+![](images/5.png)
 
 -Only registered users can buy tickets. The registration page.
-![](images/6.PNG)
+![](images/6.png)
 
 -Login page.
-![](images/7.PNG)
+![](images/7.png)
 
 -If user input has errors, there are invalid form page for that.
-![](images/8.PNG)
+![](images/8.png)
 
 -As logged-in user there are feature to buy ticket by clicking the link on film sessions page.
-![](images/9.PNG)
+![](images/9.png)
 
 -If purchase was success user should see notification.
-![](images/10.PNG)
+![](images/10.png)
 
 -If ticket is unavailable user will see an error.
-![](images/11.PNG)
+![](images/11.png)
 
 ## Контакты.
 - skyrockpk@gmail.com
