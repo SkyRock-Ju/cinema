@@ -26,7 +26,6 @@
                     <a class="nav-item nav-link active" href="/">Главная</a>
                     <a class="nav-item nav-link" th:href="@{/film_sessions}">Расписание сеансов</a>
                     <a class="nav-item nav-link" th:href="@{/films}">Кинотека</a>
-                    <a class="nav-item nav-link" th:href="@{/purchase}">Купить билет</a>
                     <div class="d-flex" th:if="${user.isAdmin} == true">
                         <a class="nav-item nav-link" th:href="@{/films/create}">Добавить фильм</a>
                     </div>
