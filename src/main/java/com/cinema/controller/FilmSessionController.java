@@ -55,30 +55,20 @@ public class FilmSessionController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute FilmSession filmSession, Model model) {
-        try {
-            filmSessionService.save(filmSession);
-            return "redirect:/film_sessions";
-        } catch (Exception exception) {
-            model.addAttribute("message", exception.getMessage());
-            return "errors/404";
-        }
+    public String create(@ModelAttribute FilmSession filmSession) {
+        filmSessionService.save(filmSession);
+        return "redirect:/film_sessions";
     }
 
     @PostMapping("/update")
     public String update(@ModelAttribute FilmSession filmSession, Model model) {
-        try {
-            var isUpdated = filmSessionService.update(filmSession);
-            if (!isUpdated) {
-                model.addAttribute("message",
-                        "Сеанс с указанным идентификатором не найден");
-                return "errors/404";
-            }
-            return "redirect:/film_sessions";
-        } catch (Exception exception) {
-            model.addAttribute("message", exception.getMessage());
+        var isUpdated = filmSessionService.update(filmSession);
+        if (!isUpdated) {
+            model.addAttribute("message",
+                    "Сеанс с указанным идентификатором не найден");
             return "errors/404";
         }
+        return "redirect:/film_sessions";
     }
 
     @GetMapping("/delete/{id}")
